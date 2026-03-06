@@ -14,18 +14,15 @@
     />
 
     <style>
-      /* Design System: Exaggerated Minimalism */
+      /* Compact Design System */
       :root {
         --primary: #DC2626;
         --primary-hover: #B91C1C;
-        --secondary: #EF4444;
-        --cta: #1E40AF;
-        --cta-hover: #1E3A8A;
         --bg-light: #FEF2F2;
         --bg-white: #FFFFFF;
-        --text-dark: #450A0A;
-        --text-muted: #7F1D1D;
-        --border: #FECACA;
+        --text-dark: #1F2937;
+        --text-muted: #6B7280;
+        --border: #E5E7EB;
       }
 
       * {
@@ -38,146 +35,96 @@
         font-family: 'Roboto', sans-serif;
         background: var(--bg-light);
         color: var(--text-dark);
-        line-height: 1.6;
+        line-height: 1.5;
         min-height: 100vh;
       }
 
-      /* Hero Section - Exaggerated Minimalism */
-      .hero {
-        padding: clamp(3rem, 10vw, 12rem) clamp(2rem, 5vw, 8rem);
-        text-align: center;
-        position: relative;
-        overflow: hidden;
-      }
-
-      .hero::before {
-        content: '';
-        position: absolute;
-        top: -50%;
-        left: -50%;
-        width: 200%;
-        height: 200%;
-        background: radial-gradient(circle, rgba(220, 38, 38, 0.03) 0%, transparent 70%);
-        animation: rotate 30s linear infinite;
-      }
-
-      @keyframes rotate {
-        from { transform: rotate(0deg); }
-        to { transform: rotate(360deg); }
-      }
-
-      .hero-content {
-        position: relative;
-        z-index: 1;
-      }
-
-      .hero-tag {
-        font-family: 'Newsreader', serif;
-        font-size: clamp(0.75rem, 1vw, 1rem);
-        font-weight: 500;
-        letter-spacing: 0.3em;
-        text-transform: uppercase;
-        color: var(--primary);
-        margin-bottom: 1rem;
-      }
-
-      .hero-title {
-        font-family: 'Newsreader', serif;
-        font-size: clamp(2.5rem, 8vw, 8rem);
-        font-weight: 900;
-        letter-spacing: -0.05em;
-        line-height: 0.95;
-        color: var(--text-dark);
-        margin-bottom: 1.5rem;
-      }
-
-      .hero-subtitle {
-        font-size: clamp(1rem, 1.5vw, 1.25rem);
-        font-weight: 300;
-        color: var(--text-muted);
-        max-width: 600px;
-        margin: 0 auto;
-      }
-
-      /* Stats Bar */
-      .stats-bar {
-        display: flex;
-        justify-content: center;
-        gap: clamp(2rem, 4vw, 4rem);
-        padding: 2rem;
+      /* Compact Header */
+      .header {
         background: var(--bg-white);
-        border-top: 1px solid var(--border);
         border-bottom: 1px solid var(--border);
+        padding: 1rem 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
         flex-wrap: wrap;
+        gap: 1rem;
       }
 
-      .stat-item {
-        text-align: center;
+      .header-left {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
       }
 
-      .stat-value {
+      .header-title {
         font-family: 'Newsreader', serif;
-        font-size: clamp(2rem, 4vw, 3rem);
-        font-weight: 800;
-        color: var(--primary);
-        line-height: 1;
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--text-dark);
       }
 
-      .stat-label {
+      .header-tag {
         font-size: 0.75rem;
         font-weight: 500;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-        color: var(--text-muted);
-        margin-top: 0.5rem;
+        color: var(--primary);
+        background: var(--bg-light);
+        padding: 0.25rem 0.75rem;
+        border-radius: 1rem;
       }
 
-      /* Controls */
-      .controls {
-        position: sticky;
-        top: 0;
-        z-index: 100;
-        background: rgba(255, 255, 255, 0.95);
-        backdrop-filter: blur(10px);
-        padding: 1rem 2rem;
-        border-bottom: 1px solid var(--border);
+      .header-stats {
         display: flex;
-        gap: 1rem;
+        gap: 1.5rem;
+        font-size: 0.875rem;
+        color: var(--text-muted);
+      }
+
+      .stat-item b {
+        color: var(--primary);
+        font-weight: 600;
+      }
+
+      /* Compact Controls */
+      .controls {
+        background: var(--bg-white);
+        border-bottom: 1px solid var(--border);
+        padding: 0.75rem 2rem;
+        display: flex;
+        gap: 0.75rem;
         align-items: center;
         flex-wrap: wrap;
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
       }
 
       .search-box {
         flex: 1;
-        min-width: 250px;
+        min-width: 200px;
         position: relative;
       }
 
       .search-input {
         width: 100%;
-        padding: 0.75rem 1rem 0.75rem 2.5rem;
+        padding: 0.5rem 1rem 0.5rem 2rem;
         border: 1px solid var(--border);
-        border-radius: 0.5rem;
+        border-radius: 0.375rem;
         font-size: 0.875rem;
         font-family: inherit;
-        transition: all 0.2s;
+        transition: border-color 0.2s;
         background: var(--bg-white);
       }
 
       .search-input:focus {
         outline: none;
         border-color: var(--primary);
-        box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
       }
 
       .search-icon {
         position: absolute;
-        left: 0.75rem;
+        left: 0.625rem;
         top: 50%;
         transform: translateY(-50%);
-        width: 1.25rem;
-        height: 1.25rem;
+        width: 1rem;
+        height: 1rem;
         color: var(--text-muted);
       }
 
@@ -186,80 +133,41 @@
       }
 
       .site-select {
-        padding: 0.75rem 2rem 0.75rem 1rem;
+        padding: 0.5rem 1.5rem 0.5rem 0.75rem;
         border: 1px solid var(--border);
-        border-radius: 0.5rem;
+        border-radius: 0.375rem;
         font-size: 0.875rem;
         font-family: inherit;
         background: var(--bg-white);
         cursor: pointer;
         appearance: none;
-        transition: all 0.2s;
-      }
-
-      .site-select:focus {
-        outline: none;
-        border-color: var(--primary);
       }
 
       .select-arrow {
         position: absolute;
-        right: 0.75rem;
+        right: 0.5rem;
         top: 50%;
         transform: translateY(-50%);
-        width: 1rem;
-        height: 1rem;
+        width: 0.875rem;
+        height: 0.875rem;
         color: var(--text-muted);
         pointer-events: none;
-      }
-
-      .mode-switch {
-        display: flex;
-        background: var(--bg-light);
-        border-radius: 0.5rem;
-        padding: 0.25rem;
-        gap: 0.25rem;
-      }
-
-      .mode-btn {
-        padding: 0.5rem 1rem;
-        border: none;
-        border-radius: 0.375rem;
-        font-size: 0.875rem;
-        font-weight: 500;
-        font-family: inherit;
-        cursor: pointer;
-        transition: all 0.2s;
-        background: transparent;
-        color: var(--text-muted);
-      }
-
-      .mode-btn.active {
-        background: var(--bg-white);
-        color: var(--text-dark);
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-      }
-
-      .mode-btn:hover:not(.active) {
-        background: rgba(255, 255, 255, 0.5);
       }
 
       /* Language Tabs */
       .language-tabs {
         display: flex;
-        justify-content: center;
-        gap: 1rem;
-        padding: 2rem 1rem 1rem;
-        border-bottom: 1px solid var(--border);
+        gap: 0.5rem;
+        padding: 0.75rem 2rem 0.5rem;
+        background: var(--bg-white);
       }
 
       .lang-tab {
-        padding: 0.75rem 2rem;
+        padding: 0.375rem 1rem;
         border: none;
-        border-bottom: 3px solid transparent;
-        font-size: 1rem;
+        border-bottom: 2px solid transparent;
+        font-size: 0.875rem;
         font-weight: 500;
-        font-family: 'Newsreader', serif;
         cursor: pointer;
         transition: all 0.2s;
         background: transparent;
@@ -268,114 +176,99 @@
 
       .lang-tab.active {
         border-bottom-color: var(--primary);
-        color: var(--text-dark);
+        color: var(--primary);
       }
 
       .lang-tab:hover {
-        color: var(--text-dark);
+        color: var(--primary);
       }
 
       /* Main Content */
       .main-content {
         max-width: 1400px;
         margin: 0 auto;
-        padding: 2rem 1rem;
+        padding: 1rem 2rem;
       }
 
-      /* Section Header */
       .section-header {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-bottom: 2rem;
-        flex-wrap: wrap;
-        gap: 1rem;
+        margin-bottom: 1rem;
+        padding: 0.75rem 0;
+        border-bottom: 1px solid var(--border);
       }
 
       .section-title {
         font-family: 'Newsreader', serif;
-        font-size: clamp(1.5rem, 3vw, 2.5rem);
-        font-weight: 700;
+        font-size: 1.25rem;
+        font-weight: 600;
         color: var(--text-dark);
       }
 
       .result-count {
         font-size: 0.875rem;
-        font-weight: 500;
         color: var(--text-muted);
-        padding: 0.5rem 1rem;
-        background: var(--bg-white);
-        border-radius: 2rem;
-        border: 1px solid var(--border);
       }
 
-      /* News Grid */
+      /* News Grid - Compact Cards */
       .news-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(min(100%, 400px), 1fr));
-        gap: 1.5rem;
-        margin-bottom: 4rem;
+        grid-template-columns: repeat(auto-fill, minmax(min(100%, 350px), 1fr));
+        gap: 0.75rem;
+        margin-bottom: 2rem;
       }
 
-      /* News Card */
       .news-card {
         background: var(--bg-white);
-        border-radius: 1rem;
-        padding: 1.5rem;
+        border-radius: 0.5rem;
+        padding: 0.875rem;
         border: 1px solid var(--border);
-        transition: all 0.2s;
+        transition: all 0.15s;
         cursor: pointer;
         display: flex;
         flex-direction: column;
-        gap: 1rem;
+        gap: 0.5rem;
       }
 
       .news-card:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 12px 24px -8px rgba(220, 38, 38, 0.15);
         border-color: var(--primary);
+        box-shadow: 0 2px 8px rgba(220, 38, 38, 0.1);
       }
 
       .card-meta {
         display: flex;
-        gap: 0.75rem;
+        gap: 0.5rem;
         align-items: center;
+        font-size: 0.75rem;
         flex-wrap: wrap;
       }
 
       .site-badge {
-        display: inline-flex;
-        align-items: center;
-        padding: 0.25rem 0.75rem;
-        background: var(--bg-light);
-        border-radius: 0.375rem;
-        font-size: 0.75rem;
         font-weight: 500;
         color: var(--primary);
-        letter-spacing: 0.05em;
+        background: var(--bg-light);
+        padding: 0.125rem 0.5rem;
+        border-radius: 0.25rem;
       }
 
       .source-badge {
-        font-size: 0.75rem;
         color: var(--text-muted);
-        font-weight: 400;
       }
 
       .time-badge {
         margin-left: auto;
-        font-size: 0.75rem;
         color: var(--text-muted);
-        font-weight: 400;
       }
 
       .card-title {
         font-family: 'Newsreader', serif;
-        font-size: 1.125rem;
+        font-size: 1rem;
         font-weight: 600;
         line-height: 1.4;
         color: var(--text-dark);
         display: -webkit-box;
-        -webkit-line-clamp: 3;
+        -webkit-line-clamp: 2;
         -webkit-box-orient: vertical;
         overflow: hidden;
       }
@@ -386,74 +279,52 @@
 
       .card-title-en {
         font-family: 'Roboto', sans-serif;
-        font-size: 0.875rem;
-        font-weight: 400;
+        font-size: 0.8125rem;
         color: var(--text-muted);
-        line-height: 1.5;
+        line-height: 1.4;
         display: -webkit-box;
         -webkit-line-clamp: 2;
         -webkit-box-orient: vertical;
         overflow: hidden;
       }
 
-      /* Loading State */
-      .loading {
-        text-align: center;
-        padding: 4rem 2rem;
-        color: var(--text-muted);
-      }
-
-      .loading-spinner {
-        width: 3rem;
-        height: 3rem;
-        border: 3px solid var(--border);
-        border-top-color: var(--primary);
-        border-radius: 50%;
-        animation: spin 1s linear infinite;
-        margin: 0 auto 1rem;
-      }
-
-      @keyframes spin {
-        to { transform: rotate(360deg); }
-      }
-
       /* Empty State */
       .empty-state {
         text-align: center;
-        padding: 4rem 2rem;
+        padding: 3rem 2rem;
         color: var(--text-muted);
-      }
-
-      .empty-icon {
-        width: 4rem;
-        height: 4rem;
-        margin: 0 auto 1rem;
-        color: var(--border);
       }
 
       /* Footer */
       .footer {
         text-align: center;
-        padding: 3rem 2rem;
+        padding: 1.5rem 2rem;
         border-top: 1px solid var(--border);
         color: var(--text-muted);
-        font-size: 0.875rem;
+        font-size: 0.8125rem;
       }
 
       .footer a {
         color: var(--primary);
         text-decoration: none;
-        font-weight: 500;
-      }
-
-      .footer a:hover {
-        text-decoration: underline;
       }
 
       /* Responsive */
       @media (max-width: 768px) {
+        .header {
+          padding: 0.75rem 1rem;
+        }
+
+        .header-title {
+          font-size: 1.125rem;
+        }
+
+        .header-stats {
+          display: none;
+        }
+
         .controls {
-          position: relative;
+          padding: 0.5rem 1rem;
         }
 
         .search-box {
@@ -461,16 +332,16 @@
           flex: none;
         }
 
-        .stats-bar {
-          gap: 1.5rem;
+        .main-content {
+          padding: 0.75rem 1rem;
+        }
+
+        .news-grid {
+          grid-template-columns: 1fr;
         }
       }
 
       @media (prefers-reduced-motion: reduce) {
-        .hero::before {
-          animation: none;
-        }
-
         .news-card:hover {
           transform: none;
         }
@@ -478,30 +349,18 @@
     </style>
   </head>
   <body>
-    <!-- Hero Section -->
-    <header class="hero">
-      <div class="hero-content">
-        <p class="hero-tag">AI News Intelligence</p>
-        <h1 class="hero-title">24h AI 更新雷达</h1>
-        <p class="hero-subtitle">聚合10个站点，AI/科技强相关话题筛选，中英双语展示</p>
+    <!-- Compact Header -->
+    <header class="header">
+      <div class="header-left">
+        <h1 class="header-title">24h AI 更新雷达</h1>
+        <span class="header-tag">AI News</span>
+      </div>
+      <div class="header-stats">
+        <span class="stat-item"><b id="totalItems">-</b> 24h更新</span>
+        <span class="stat-item"><b id="sourceCount">-</b> 数据源</span>
+        <span class="stat-item">更新于 <span id="updatedAt">-</span></span>
       </div>
     </header>
-
-    <!-- Stats Bar -->
-    <section class="stats-bar" id="stats">
-      <div class="stat-item">
-        <div class="stat-value" id="totalItems">-</div>
-        <div class="stat-label">24小时更新</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-value" id="aiItems">-</div>
-        <div class="stat-label">AI强相关</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-value" id="sourceCount">-</div>
-        <div class="stat-label">数据源</div>
-      </div>
-    </section>
 
     <!-- Controls -->
     <nav class="controls">
@@ -513,7 +372,7 @@
           type="search"
           id="searchInput"
           class="search-input"
-          placeholder="搜索标题 / 来源..."
+          placeholder="搜索..."
         />
       </div>
 
@@ -556,10 +415,7 @@
 
     <!-- Footer -->
     <footer class="footer">
-      <p>
-        数据每30分钟自动更新 | 最后更新: <span id="updatedAt">-</span><br />
-        <a href="https://github.com/itech001/oh-my-news" target="_blank" rel="noopener">GitHub</a>
-      </p>
+      数据每30分钟自动更新 | <a href="https://github.com/itech001/oh-my-news" target="_blank" rel="noopener">GitHub</a>
     </footer>
 
     <script>
@@ -580,13 +436,13 @@
       const zhCount = document.getElementById('zhCount');
       const enCount = document.getElementById('enCount');
       const totalItems = document.getElementById('totalItems');
-      const aiItems = document.getElementById('aiItems');
       const sourceCount = document.getElementById('sourceCount');
       const updatedAt = document.getElementById('updatedAt');
 
-      // Format time
-      function formatTime(timestamp) {
-        if (!timestamp) return '未知时间';
+      // Format time - use first_seen_at if published_at is null
+      function formatTime(item) {
+        const timestamp = item.published_at || item.first_seen_at;
+        if (!timestamp) return '未知';
 
         const date = new Date(timestamp);
         const now = new Date();
@@ -599,21 +455,32 @@
         } else if (hours < 24) {
           return `${hours}小时前`;
         } else {
-          return date.toLocaleDateString('zh-CN');
+          return date.toLocaleDateString('zh-CN', { month: 'short', day: 'numeric' });
         }
       }
 
-      // Load data
+      // Load data with fallback
       async function loadData() {
         try {
+          console.log('Loading data from ./data/latest-24h.json');
           const response = await fetch('./data/latest-24h.json');
+
+          if (!response.ok) {
+            throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+          }
+
           newsData = await response.json();
+          console.log('Data loaded:', {
+            total: newsData.total_items,
+            items: newsData.items?.length
+          });
+
           updateStats();
           populateSiteSelect();
           renderNews();
         } catch (error) {
           console.error('Failed to load data:', error);
-          zhNewsList.innerHTML = '<div class="empty-state">加载失败，请刷新页面重试</div>';
+          zhNewsList.innerHTML = '<div class="empty-state">加载失败，请确保在服务器环境下运行</div>';
           enNewsList.innerHTML = '<div class="empty-state">Failed to load data</div>';
         }
       }
@@ -621,9 +488,11 @@
       // Update stats
       function updateStats() {
         totalItems.textContent = newsData.total_items.toLocaleString();
-        aiItems.textContent = newsData.total_items.toLocaleString();
         sourceCount.textContent = newsData.source_count;
-        updatedAt.textContent = new Date(newsData.generated_at).toLocaleString('zh-CN');
+        updatedAt.textContent = new Date(newsData.generated_at).toLocaleTimeString('zh-CN', {
+          hour: '2-digit',
+          minute: '2-digit'
+        });
       }
 
       // Populate site select
@@ -680,7 +549,7 @@
           <div class="card-meta">
             <span class="site-badge">${item.site_name}</span>
             ${item.source ? `<span class="source-badge">${item.source}</span>` : ''}
-            <time class="time-badge">${formatTime(item.published_at)}</time>
+            <time class="time-badge">${formatTime(item)}</time>
           </div>
         `;
 
