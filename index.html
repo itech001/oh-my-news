@@ -3,21 +3,18 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AI Signal Board - AI Intelligence News</title>
+    <title>AI Signal Board - 24h Updates</title>
 
-    <!-- Fonts: Newsreader + Roboto -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Newsreader:wght@400;500;600;700;800;900&family=Roboto:wght@300;400;500;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
 
     <style>
-      /* Compact Design System */
       :root {
         --primary: #DC2626;
-        --primary-hover: #B91C1C;
         --bg-light: #FEF2F2;
         --bg-white: #FFFFFF;
         --text-dark: #1F2937;
@@ -32,66 +29,67 @@
       }
 
       body {
-        font-family: 'Roboto', sans-serif;
+        font-family: 'Inter', -apple-system, sans-serif;
         background: var(--bg-light);
         color: var(--text-dark);
         line-height: 1.5;
-        min-height: 100vh;
       }
 
-      /* Compact Header */
+      /* Header */
       .header {
         background: var(--bg-white);
         border-bottom: 1px solid var(--border);
-        padding: 1rem 2rem;
+        padding: 0.75rem 1.5rem;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        flex-wrap: wrap;
-        gap: 1rem;
+        position: sticky;
+        top: 0;
+        z-index: 100;
       }
 
       .header-left {
         display: flex;
         align-items: center;
-        gap: 1rem;
+        gap: 0.75rem;
       }
 
       .header-title {
-        font-family: 'Newsreader', serif;
-        font-size: 1.5rem;
+        font-size: 1.125rem;
         font-weight: 700;
         color: var(--text-dark);
       }
 
       .header-tag {
-        font-size: 0.75rem;
-        font-weight: 500;
+        font-size: 0.6875rem;
+        font-weight: 600;
         color: var(--primary);
         background: var(--bg-light);
-        padding: 0.25rem 0.75rem;
+        padding: 0.125rem 0.5rem;
         border-radius: 1rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
       }
 
       .header-stats {
         display: flex;
-        gap: 1.5rem;
-        font-size: 0.875rem;
+        gap: 1rem;
+        font-size: 0.8125rem;
         color: var(--text-muted);
       }
 
-      .stat-item b {
+      .header-stats b {
         color: var(--primary);
         font-weight: 600;
       }
 
-      /* Compact Controls */
+      /* Controls */
       .controls {
         background: var(--bg-white);
         border-bottom: 1px solid var(--border);
-        padding: 0.75rem 2rem;
+        padding: 0.5rem 1.5rem;
         display: flex;
-        gap: 0.75rem;
+        gap: 0.5rem;
         align-items: center;
         flex-wrap: wrap;
       }
@@ -104,12 +102,12 @@
 
       .search-input {
         width: 100%;
-        padding: 0.5rem 1rem 0.5rem 2rem;
+        padding: 0.375rem 0.75rem 0.375rem 1.75rem;
         border: 1px solid var(--border);
         border-radius: 0.375rem;
-        font-size: 0.875rem;
+        font-size: 0.8125rem;
         font-family: inherit;
-        transition: border-color 0.2s;
+        transition: border-color 0.15s;
         background: var(--bg-white);
       }
 
@@ -120,11 +118,11 @@
 
       .search-icon {
         position: absolute;
-        left: 0.625rem;
+        left: 0.5rem;
         top: 50%;
         transform: translateY(-50%);
-        width: 1rem;
-        height: 1rem;
+        width: 0.875rem;
+        height: 0.875rem;
         color: var(--text-muted);
       }
 
@@ -133,10 +131,10 @@
       }
 
       .site-select {
-        padding: 0.5rem 1.5rem 0.5rem 0.75rem;
+        padding: 0.375rem 1.25rem 0.375rem 0.625rem;
         border: 1px solid var(--border);
         border-radius: 0.375rem;
-        font-size: 0.875rem;
+        font-size: 0.8125rem;
         font-family: inherit;
         background: var(--bg-white);
         cursor: pointer;
@@ -145,41 +143,44 @@
 
       .select-arrow {
         position: absolute;
-        right: 0.5rem;
+        right: 0.375rem;
         top: 50%;
         transform: translateY(-50%);
-        width: 0.875rem;
-        height: 0.875rem;
+        width: 0.75rem;
+        height: 0.75rem;
         color: var(--text-muted);
         pointer-events: none;
       }
 
-      /* Language Tabs */
-      .language-tabs {
-        display: flex;
-        gap: 0.5rem;
-        padding: 0.75rem 2rem 0.5rem;
+      /* Category Tabs */
+      .category-tabs {
         background: var(--bg-white);
+        border-bottom: 1px solid var(--border);
+        padding: 0.5rem 1.5rem;
+        display: flex;
+        gap: 0.25rem;
+        overflow-x: auto;
       }
 
-      .lang-tab {
-        padding: 0.375rem 1rem;
+      .category-tab {
+        padding: 0.375rem 0.875rem;
         border: none;
         border-bottom: 2px solid transparent;
-        font-size: 0.875rem;
+        font-size: 0.8125rem;
         font-weight: 500;
         cursor: pointer;
-        transition: all 0.2s;
+        transition: all 0.15s;
         background: transparent;
         color: var(--text-muted);
+        white-space: nowrap;
       }
 
-      .lang-tab.active {
+      .category-tab.active {
         border-bottom-color: var(--primary);
         color: var(--primary);
       }
 
-      .lang-tab:hover {
+      .category-tab:hover {
         color: var(--primary);
       }
 
@@ -187,60 +188,59 @@
       .main-content {
         max-width: 1400px;
         margin: 0 auto;
-        padding: 1rem 2rem;
+        padding: 0.75rem 1.5rem;
       }
 
       .section-header {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-bottom: 1rem;
-        padding: 0.75rem 0;
+        margin-bottom: 0.75rem;
+        padding: 0.5rem 0;
         border-bottom: 1px solid var(--border);
       }
 
       .section-title {
-        font-family: 'Newsreader', serif;
-        font-size: 1.25rem;
+        font-size: 1rem;
         font-weight: 600;
         color: var(--text-dark);
       }
 
       .result-count {
-        font-size: 0.875rem;
+        font-size: 0.8125rem;
         color: var(--text-muted);
       }
 
-      /* News Grid - Compact Cards */
+      /* News Grid */
       .news-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(min(100%, 350px), 1fr));
-        gap: 0.75rem;
-        margin-bottom: 2rem;
+        grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr));
+        gap: 0.5rem;
+        margin-bottom: 1.5rem;
       }
 
       .news-card {
         background: var(--bg-white);
-        border-radius: 0.5rem;
-        padding: 0.875rem;
+        border-radius: 0.375rem;
+        padding: 0.625rem;
         border: 1px solid var(--border);
         transition: all 0.15s;
         cursor: pointer;
         display: flex;
         flex-direction: column;
-        gap: 0.5rem;
+        gap: 0.375rem;
       }
 
       .news-card:hover {
         border-color: var(--primary);
-        box-shadow: 0 2px 8px rgba(220, 38, 38, 0.1);
+        box-shadow: 0 1px 4px rgba(220, 38, 38, 0.1);
       }
 
       .card-meta {
         display: flex;
-        gap: 0.5rem;
+        gap: 0.375rem;
         align-items: center;
-        font-size: 0.75rem;
+        font-size: 0.6875rem;
         flex-wrap: wrap;
       }
 
@@ -248,7 +248,7 @@
         font-weight: 500;
         color: var(--primary);
         background: var(--bg-light);
-        padding: 0.125rem 0.5rem;
+        padding: 0.0625rem 0.375rem;
         border-radius: 0.25rem;
       }
 
@@ -262,9 +262,8 @@
       }
 
       .card-title {
-        font-family: 'Newsreader', serif;
-        font-size: 1rem;
-        font-weight: 600;
+        font-size: 0.875rem;
+        font-weight: 500;
         line-height: 1.4;
         color: var(--text-dark);
         display: -webkit-box;
@@ -278,30 +277,29 @@
       }
 
       .card-title-en {
-        font-family: 'Roboto', sans-serif;
-        font-size: 0.8125rem;
+        font-size: 0.75rem;
         color: var(--text-muted);
         line-height: 1.4;
         display: -webkit-box;
-        -webkit-line-clamp: 2;
+        -webkit-line-clamp: 1;
         -webkit-box-orient: vertical;
         overflow: hidden;
       }
 
-      /* Empty State */
       .empty-state {
         text-align: center;
-        padding: 3rem 2rem;
+        padding: 2rem 1rem;
         color: var(--text-muted);
+        font-size: 0.875rem;
       }
 
       /* Footer */
       .footer {
         text-align: center;
-        padding: 1.5rem 2rem;
+        padding: 1rem 1.5rem;
         border-top: 1px solid var(--border);
         color: var(--text-muted);
-        font-size: 0.8125rem;
+        font-size: 0.75rem;
       }
 
       .footer a {
@@ -312,11 +310,7 @@
       /* Responsive */
       @media (max-width: 768px) {
         .header {
-          padding: 0.75rem 1rem;
-        }
-
-        .header-title {
-          font-size: 1.125rem;
+          padding: 0.5rem 1rem;
         }
 
         .header-stats {
@@ -333,47 +327,34 @@
         }
 
         .main-content {
-          padding: 0.75rem 1rem;
+          padding: 0.5rem 1rem;
         }
 
         .news-grid {
           grid-template-columns: 1fr;
         }
       }
-
-      @media (prefers-reduced-motion: reduce) {
-        .news-card:hover {
-          transform: none;
-        }
-      }
     </style>
   </head>
   <body>
-    <!-- Compact Header -->
     <header class="header">
       <div class="header-left">
         <h1 class="header-title">24h AI 更新雷达</h1>
-        <span class="header-tag">AI News</span>
+        <span class="header-tag">Live</span>
       </div>
       <div class="header-stats">
-        <span class="stat-item"><b id="totalItems">-</b> 24h更新</span>
-        <span class="stat-item"><b id="sourceCount">-</b> 数据源</span>
-        <span class="stat-item">更新于 <span id="updatedAt">-</span></span>
+        <span><b id="totalItems">-</b> 更新</span>
+        <span><b id="sourceCount">-</b> 源</span>
+        <span id="updatedAt">-</span>
       </div>
     </header>
 
-    <!-- Controls -->
     <nav class="controls">
       <div class="search-box">
         <svg class="search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
         </svg>
-        <input
-          type="search"
-          id="searchInput"
-          class="search-input"
-          placeholder="搜索..."
-        />
+        <input type="search" id="searchInput" class="search-input" placeholder="搜索..." />
       </div>
 
       <div class="select-wrapper">
@@ -386,63 +367,69 @@
       </div>
     </nav>
 
-    <!-- Language Tabs -->
-    <div class="language-tabs">
-      <button class="lang-tab active" data-lang="zh">中文</button>
-      <button class="lang-tab" data-lang="en">English</button>
+    <div class="category-tabs" id="categoryTabs">
+      <button class="category-tab active" data-category="all">全部</button>
+      <button class="category-tab" data-category="news">新闻</button>
+      <button class="category-tab" data-category="tech">技术</button>
+      <button class="category-tab" data-category="tools">工具</button>
+      <button class="category-tab" data-category="research">研究</button>
+      <button class="category-tab" data-category="company">公司</button>
     </div>
 
-    <!-- Main Content -->
     <main class="main-content">
-      <!-- Chinese Section -->
-      <section id="zh-section">
-        <div class="section-header">
-          <h2 class="section-title">中文资讯</h2>
-          <span class="result-count" id="zhCount">加载中...</span>
-        </div>
-        <div class="news-grid" id="zhNewsList"></div>
-      </section>
-
-      <!-- English Section -->
-      <section id="en-section" style="display: none;">
-        <div class="section-header">
-          <h2 class="section-title">English News</h2>
-          <span class="result-count" id="enCount">加载中...</span>
-        </div>
-        <div class="news-grid" id="enNewsList"></div>
-      </section>
+      <div class="section-header">
+        <h2 class="section-title" id="sectionTitle">全部</h2>
+        <span class="result-count" id="resultCount">加载中...</span>
+      </div>
+      <div class="news-grid" id="newsList"></div>
     </main>
 
-    <!-- Footer -->
     <footer class="footer">
       数据每30分钟自动更新 | <a href="https://github.com/itech001/oh-my-news" target="_blank" rel="noopener">GitHub</a>
     </footer>
 
     <script>
-      // State
       let newsData = null;
-      let currentLang = 'zh';
+      let currentCategory = 'all';
       let searchQuery = '';
       let selectedSite = '';
 
-      // DOM Elements
       const searchInput = document.getElementById('searchInput');
       const siteSelect = document.getElementById('siteSelect');
-      const langTabs = document.querySelectorAll('.lang-tab');
-      const zhSection = document.getElementById('zh-section');
-      const enSection = document.getElementById('en-section');
-      const zhNewsList = document.getElementById('zhNewsList');
-      const enNewsList = document.getElementById('enNewsList');
-      const zhCount = document.getElementById('zhCount');
-      const enCount = document.getElementById('enCount');
+      const categoryTabs = document.querySelectorAll('.category-tab');
+      const newsList = document.getElementById('newsList');
+      const resultCount = document.getElementById('resultCount');
+      const sectionTitle = document.getElementById('sectionTitle');
       const totalItems = document.getElementById('totalItems');
       const sourceCount = document.getElementById('sourceCount');
       const updatedAt = document.getElementById('updatedAt');
 
-      // Format time - use first_seen_at if published_at is null
+      // Category keywords
+      const categoryKeywords = {
+        news: ['新闻', '发布', '宣布', '推出', '上线', '发布', 'news', 'release', 'launch', 'announce'],
+        tech: ['技术', '模型', '算法', '训练', '推理', 'tech', 'model', 'algorithm', 'training', 'inference'],
+        tools: ['工具', '软件', '应用', '平台', 'API', 'tool', 'software', 'app', 'platform'],
+        research: ['研究', '论文', '实验', '发现', 'research', 'paper', 'study', 'experiment'],
+        company: ['公司', '融资', '收购', '合作', 'OpenAI', 'Google', 'Microsoft', 'company', 'funding', 'acquisition']
+      };
+
+      // Categorize item
+      function categorizeItem(item) {
+        const title = (item.title_zh || item.title || item.title_en || '').toLowerCase();
+
+        for (const [category, keywords] of Object.entries(categoryKeywords)) {
+          for (const keyword of keywords) {
+            if (title.toLowerCase().includes(keyword.toLowerCase())) {
+              return category;
+            }
+          }
+        }
+        return 'news'; // Default
+      }
+
       function formatTime(item) {
         const timestamp = item.published_at || item.first_seen_at;
-        if (!timestamp) return '未知';
+        if (!timestamp) return '';
 
         const date = new Date(timestamp);
         const now = new Date();
@@ -451,63 +438,63 @@
 
         if (hours < 1) {
           const minutes = Math.floor(diff / (1000 * 60));
-          return `${minutes}分钟前`;
+          return `${minutes}m`;
         } else if (hours < 24) {
-          return `${hours}小时前`;
+          return `${hours}h`;
         } else {
           return date.toLocaleDateString('zh-CN', { month: 'short', day: 'numeric' });
         }
       }
 
-      // Load data with fallback
       async function loadData() {
         try {
-          console.log('Loading data from ./data/latest-24h.json');
+          console.log('Loading data...');
           const response = await fetch('./data/latest-24h.json');
 
           if (!response.ok) {
-            throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+            throw new Error(`HTTP ${response.status}`);
           }
 
           newsData = await response.json();
-          console.log('Data loaded:', {
-            total: newsData.total_items,
-            items: newsData.items?.length
-          });
+          console.log('Loaded:', newsData.total_items, 'items');
 
           updateStats();
           populateSiteSelect();
           renderNews();
         } catch (error) {
-          console.error('Failed to load data:', error);
-          zhNewsList.innerHTML = '<div class="empty-state">加载失败，请确保在服务器环境下运行</div>';
-          enNewsList.innerHTML = '<div class="empty-state">Failed to load data</div>';
+          console.error('Failed to load:', error);
+          newsList.innerHTML = '<div class="empty-state">加载失败，请确保在服务器环境下运行</div>';
         }
       }
 
-      // Update stats
       function updateStats() {
         totalItems.textContent = newsData.total_items.toLocaleString();
-        sourceCount.textContent = newsData.source_count;
+        sourceCount.textContent = newsData.site_count;
         updatedAt.textContent = new Date(newsData.generated_at).toLocaleTimeString('zh-CN', {
           hour: '2-digit',
           minute: '2-digit'
         });
       }
 
-      // Populate site select
       function populateSiteSelect() {
         newsData.site_stats.forEach(site => {
-          const option = document.createElement('option');
-          option.value = site.site_id;
-          option.textContent = `${site.site_name} (${site.count})`;
-          siteSelect.appendChild(option);
+          if (site.count > 0) {
+            const option = document.createElement('option');
+            option.value = site.site_id;
+            option.textContent = `${site.site_name} (${site.count})`;
+            siteSelect.appendChild(option);
+          }
         });
       }
 
-      // Filter news
       function filterNews(items) {
         return items.filter(item => {
+          // Category filter
+          if (currentCategory !== 'all') {
+            const itemCategory = categorizeItem(item);
+            if (itemCategory !== currentCategory) return false;
+          }
+
           // Site filter
           if (selectedSite && item.site_id !== selectedSite) return false;
 
@@ -524,23 +511,6 @@
         });
       }
 
-      // Detect language
-      function detectLanguage(item) {
-        const titleZh = item.title_zh || item.title || '';
-        const titleEn = item.title_en || '';
-
-        // Has English title and it's different from Chinese
-        if (titleEn && titleEn !== titleZh) {
-          // Check if Chinese title contains Chinese characters
-          const hasChinese = /[\u4e00-\u9fa5]/.test(titleZh);
-          if (hasChinese) {
-            return 'both';
-          }
-        }
-        return 'en';
-      }
-
-      // Render news card
       function createNewsCard(item) {
         const card = document.createElement('article');
         card.className = 'news-card';
@@ -556,22 +526,13 @@
         const titleZh = item.title_zh || item.title || '';
         const titleEn = item.title_en || '';
 
-        let titleHtml = '';
-        if (currentLang === 'zh') {
-          titleHtml = `<h3 class="card-title">${titleZh}</h3>`;
-          if (titleEn && titleEn !== titleZh) {
-            titleHtml += `<p class="card-title-en">${titleEn}</p>`;
-          }
-        } else {
-          titleHtml = `<h3 class="card-title">${titleEn || titleZh}</h3>`;
-          if (titleEn && titleZh && titleEn !== titleZh) {
-            titleHtml += `<p class="card-title-en">${titleZh}</p>`;
-          }
+        let titleHtml = `<h3 class="card-title">${titleZh}</h3>`;
+        if (titleEn && titleEn !== titleZh) {
+          titleHtml += `<p class="card-title-en">${titleEn}</p>`;
         }
 
         card.innerHTML = metaHtml + titleHtml;
 
-        // Add click handler
         card.addEventListener('click', () => {
           if (item.url) {
             window.open(item.url, '_blank', 'noopener,noreferrer');
@@ -581,43 +542,17 @@
         return card;
       }
 
-      // Render news
       function renderNews() {
         const filtered = filterNews(newsData.items || []);
 
-        // Separate by language
-        const zhItems = [];
-        const enItems = [];
+        resultCount.textContent = `${filtered.length} 条`;
 
-        filtered.forEach(item => {
-          const lang = detectLanguage(item);
-          if (lang === 'both') {
-            zhItems.push(item);
-            enItems.push(item);
-          } else {
-            enItems.push(item);
-          }
-        });
-
-        // Render Chinese
-        zhCount.textContent = `${zhItems.length} 条`;
-        if (zhItems.length === 0) {
-          zhNewsList.innerHTML = '<div class="empty-state">暂无数据</div>';
+        if (filtered.length === 0) {
+          newsList.innerHTML = '<div class="empty-state">暂无数据</div>';
         } else {
-          zhNewsList.innerHTML = '';
-          zhItems.forEach(item => {
-            zhNewsList.appendChild(createNewsCard(item));
-          });
-        }
-
-        // Render English
-        enCount.textContent = `${enItems.length} items`;
-        if (enItems.length === 0) {
-          enNewsList.innerHTML = '<div class="empty-state">No data available</div>';
-        } else {
-          enNewsList.innerHTML = '';
-          enItems.forEach(item => {
-            enNewsList.appendChild(createNewsCard(item));
+          newsList.innerHTML = '';
+          filtered.forEach(item => {
+            newsList.appendChild(createNewsCard(item));
           });
         }
       }
@@ -633,19 +568,23 @@
         renderNews();
       });
 
-      langTabs.forEach(tab => {
+      categoryTabs.forEach(tab => {
         tab.addEventListener('click', () => {
-          langTabs.forEach(t => t.classList.remove('active'));
+          categoryTabs.forEach(t => t.classList.remove('active'));
           tab.classList.add('active');
-          currentLang = tab.dataset.lang;
+          currentCategory = tab.dataset.category;
 
-          if (currentLang === 'zh') {
-            zhSection.style.display = 'block';
-            enSection.style.display = 'none';
-          } else {
-            zhSection.style.display = 'none';
-            enSection.style.display = 'block';
-          }
+          const titles = {
+            all: '全部',
+            news: '新闻',
+            tech: '技术',
+            tools: '工具',
+            research: '研究',
+            company: '公司'
+          };
+          sectionTitle.textContent = titles[currentCategory] || '全部';
+
+          renderNews();
         });
       });
 

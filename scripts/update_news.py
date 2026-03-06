@@ -1435,12 +1435,10 @@ def collect_all(session: requests.Session, now: datetime) -> tuple[list[RawItem]
         ("techurls", "TechURLs", fetch_techurls),
         ("buzzing", "Buzzing", fetch_buzzing),
         ("iris", "Info Flow", fetch_iris),
-        ("bestblogs", "BestBlogs", fetch_bestblogs),
         ("tophub", "TopHub", fetch_tophub),
         ("zeli", "Zeli", fetch_zeli),
         ("aihubtoday", "AI HubToday", fetch_ai_hubtoday),
         ("aibase", "AIbase", fetch_aibase),
-        ("aihot", "AI今日热榜", fetch_aihot),
         ("newsnow", "NewsNow", fetch_newsnow),
     ]
 
