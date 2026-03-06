@@ -257,6 +257,15 @@
         color: var(--text-muted);
       }
 
+      .tag-badge {
+        color: #7C3AED;
+        background: #F3E8FF;
+        padding: 0.0625rem 0.375rem;
+        border-radius: 0.25rem;
+        font-size: 0.6875rem;
+        font-weight: 500;
+      }
+
       .time-badge {
         margin-left: auto;
         color: var(--text-muted);
@@ -363,6 +372,17 @@
       <button class="category-tab active" data-category="all">全部</button>
     </div>
 
+    <div class="category-tabs" id="aiCompanyTabs">
+      <button class="category-tab" data-tag="github">GitHub</button>
+      <button class="category-tab" data-tag="hn">HackerNews</button>
+      <button class="category-tab" data-tag="showhn">ShowHN</button>
+      <button class="category-tab" data-tag="openai">OpenAI</button>
+      <button class="category-tab" data-tag="anthropic">Anthropic</button>
+      <button class="category-tab" data-tag="google">Google</button>
+      <button class="category-tab" data-tag="microsoft">Microsoft</button>
+      <button class="category-tab" data-tag="meta">Meta</button>
+    </div>
+
     <main class="main-content">
       <div class="section-header">
         <h2 class="section-title" id="sectionTitle">全部</h2>
@@ -378,11 +398,25 @@
     <script>
       let newsData = null;
       let currentCategory = 'all';
+      let currentTag = '';
       let searchQuery = '';
       let selectedSite = '';
 
+      // Tag keywords for AI companies and platforms
+      const tagKeywords = {
+        github: ['github', 'repo', 'commit', 'pr', 'release', 'star', 'fork'],
+        hn: ['hacker news', 'y combinator', 'yc', 'startup'],
+        showhn: ['show hn', 'show hacker news'],
+        openai: ['openai', 'gpt', 'chatgpt', 'dall-e', 'sora'],
+        anthropic: ['anthropic', 'claude'],
+        google: ['google', 'gemini', 'bard', 'deepmind', 'alphabet'],
+        microsoft: ['microsoft', 'msft', 'azure', 'copilot', 'bing'],
+        meta: ['meta', 'facebook', 'llama', 'instagram', 'whatsapp', 'zuck']
+      };
+
       const searchInput = document.getElementById('searchInput');
       const categoryTabs = document.getElementById('categoryTabs');
+      const aiCompanyTabs = document.getElementById('aiCompanyTabs');
       const newsList = document.getElementById('newsList');
       const resultCount = document.getElementById('resultCount');
       const sectionTitle = document.getElementById('sectionTitle');
@@ -426,13 +460,23 @@
           categoryTabs.appendChild(btn);
         });
 
-        // Add event listeners
+        // Add event listeners for category tabs
         categoryTabs.querySelectorAll('.category-tab').forEach(tab => {
           tab.addEventListener('click', handleCategoryClick);
+        });
+
+        // Add event listeners for AI company tags
+        aiCompanyTabs.querySelectorAll('.category-tab').forEach(tab => {
+          tab.addEventListener('click', handleTagClick);
         });
       }
 
       function handleCategoryClick(e) {
+        // Reset company tags
+        currentTag = '';
+        aiCompanyTabs.querySelectorAll('.category-tab').forEach(t => t.classList.remove('active'));
+
+        // Update category tabs
         categoryTabs.querySelectorAll('.category-tab').forEach(t => t.classList.remove('active'));
         e.target.classList.add('active');
         currentCategory = e.target.dataset.category;
@@ -442,6 +486,39 @@
         sectionTitle.textContent = site ? site.name : '全部';
 
         renderNews();
+      }
+
+      function handleTagClick(e) {
+        // Reset category
+        currentCategory = 'all';
+        categoryTabs.querySelectorAll('.category-tab').forEach(t => t.classList.remove('active'));
+        categoryTabs.querySelector('[data-category="all"]').classList.add('active');
+
+        // Update tag tabs
+        aiCompanyTabs.querySelectorAll('.category-tab').forEach(t => t.classList.remove('active'));
+        e.target.classList.add('active');
+        currentTag = e.target.dataset.tag;
+
+        sectionTitle.textContent = e.target.textContent;
+
+        renderNews();
+      }
+
+      function getItemTags(item) {
+        const title = (item.title_zh || item.title || item.title_en || '').toLowerCase();
+        const url = (item.url || '').toLowerCase();
+        const text = title + ' ' + url;
+
+        const tags = [];
+        for (const [tag, keywords] of Object.entries(tagKeywords)) {
+          for (const keyword of keywords) {
+            if (text.includes(keyword.toLowerCase())) {
+              tags.push(tag);
+              break;
+            }
+          }
+        }
+        return tags;
       }
 
       function formatTime(item) {
@@ -539,6 +616,12 @@
           // Category filter (by site)
           if (currentCategory !== 'all' && item.site_id !== currentCategory) return false;
 
+          // Tag filter (by AI company/platform)
+          if (currentTag) {
+            const itemTags = getItemTags(item);
+            if (!itemTags.includes(currentTag)) return false;
+          }
+
           // Search filter
           if (searchQuery) {
             const query = searchQuery.toLowerCase();
@@ -557,10 +640,13 @@
         const card = document.createElement('article');
         card.className = 'news-card';
 
+        const itemTags = getItemTags(item);
+
         const metaHtml = `
           <div class="card-meta">
             <span class="site-badge">${item.site_name}</span>
             ${item.source ? `<span class="source-badge">${item.source}</span>` : ''}
+            ${itemTags.length > 0 ? `<span class="tag-badge">${itemTags[0]}</span>` : ''}
             <time class="time-badge">${formatTime(item)}</time>
           </div>
         `;
