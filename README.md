@@ -39,9 +39,6 @@ python -m http.server 8080
 | 文件 | 说明 |
 |------|------|
 | `data/latest-24h.json` | 最近 24 小时新闻数据 |
-| `data/archive.json` | 历史归档（45 天） |
-| `data/source-status.json` | 数据源状态 |
-| `data/waytoagi-7d.json` | WaytoAGI 更新日志 |
 | `data/title-zh-cache.json` | 中文标题翻译缓存 |
 
 ## GitHub Actions 自动化
@@ -71,11 +68,6 @@ python -m http.server 8080
 | AIbase | AI 产品数据库 | ✅ 正常 |
 | NewsNow | 新闻聚合 | ✅ 正常 |
 
-### 已移除数据源
-
-- **BestBlogs**：24 小时窗口内无数据
-- **AI今日热榜**：403 Forbidden，网站拒绝访问
-
 ## 配置 RSS 订阅（可选）
 
 支持通过 OPML 文件批量导入私人 RSS 订阅：
@@ -101,6 +93,7 @@ oh-my-news/
 ├── feeds/                      # RSS OPML 配置
 ├── scripts/
 │   └── update_news.py         # 数据抓取脚本
+├── DESIGN.md                   # 设计规范文档
 └── index.html                  # 静态页面
 ```
 
