@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-03-06T22:34:16.896627Z",
+  "generated_at": "2026-03-06T23:32:29.302706Z",
   "sites": [
     {
       "site_id": "techurls",
       "site_name": "TechURLs",
       "ok": true,
       "item_count": 405,
-      "duration_ms": 502,
+      "duration_ms": 908,
       "error": null
     },
     {
@@ -14,31 +14,31 @@
       "site_name": "Buzzing",
       "ok": true,
       "item_count": 744,
-      "duration_ms": 382,
+      "duration_ms": 393,
       "error": null
     },
     {
       "site_id": "iris",
       "site_name": "Info Flow",
       "ok": true,
-      "item_count": 349,
-      "duration_ms": 11078,
+      "item_count": 351,
+      "duration_ms": 11168,
       "error": null
     },
     {
       "site_id": "tophub",
       "site_name": "TopHub",
       "ok": true,
-      "item_count": 3024,
-      "duration_ms": 1666,
+      "item_count": 3027,
+      "duration_ms": 2154,
       "error": null
     },
     {
       "site_id": "zeli",
       "site_name": "Zeli",
       "ok": true,
-      "item_count": 65,
-      "duration_ms": 544,
+      "item_count": 61,
+      "duration_ms": 643,
       "error": null
     },
     {
@@ -46,7 +46,7 @@
       "site_name": "AI HubToday",
       "ok": true,
       "item_count": 1,
-      "duration_ms": 280,
+      "duration_ms": 276,
       "error": null
     },
     {
@@ -54,7 +54,7 @@
       "site_name": "AIbase",
       "ok": true,
       "item_count": 20,
-      "duration_ms": 3877,
+      "duration_ms": 1463,
       "error": null
     },
     {
@@ -62,16 +62,16 @@
       "site_name": "NewsNow",
       "ok": true,
       "item_count": 141,
-      "duration_ms": 586,
+      "duration_ms": 632,
       "error": null
     }
   ],
   "successful_sites": 8,
   "failed_sites": [],
   "zero_item_sites": [],
-  "fetched_raw_items": 4749,
-  "items_before_topic_filter": 8465,
-  "items_in_24h": 959,
+  "fetched_raw_items": 4750,
+  "items_before_topic_filter": 8521,
+  "items_in_24h": 950,
   "rss_opml": {
     "enabled": false,
     "path": null,
