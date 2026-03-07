@@ -32,9 +32,11 @@ jobs:
           mkdir -p feeds
           if [ -n "$FOLLOW_OPML_B64" ]; then
             echo "$FOLLOW_OPML_B64" | base64 --decode > feeds/follow.opml
-            echo "Loaded feeds/follow.opml from FOLLOW_OPML_B64 secret"
+            echo "Loaded feeds/follow.opml from FOLLOW_OPML_B64 secret (overrides default)"
+          elif [ -f feeds/follow.opml ]; then
+            echo "Using default feeds/follow.opml from repository"
           else
-            echo "No FOLLOW_OPML_B64 secret provided; RSS OPML is optional"
+            echo "No RSS OPML found; RSS feeds are optional"
           fi
 
       - name: Update data

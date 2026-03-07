@@ -79,16 +79,34 @@ python -m http.server 8080
 
 ## 配置 RSS 订阅（可选）
 
-支持通过 OPML 文件批量导入私人 RSS 订阅：
+支持通过 OPML 文件批量导入私人 RSS 订阅。
 
-1. 复制模板：`cp feeds/follow.example.opml feeds/follow.opml`
-2. 编辑 `feeds/follow.opml`，添加你的 RSS 订阅
-3. 运行时添加参数：`--rss-opml feeds/follow.opml`
+### 默认 RSS 订阅
 
-**GitHub Actions 配置**：
-1. 生成 base64：`base64 < feeds/follow.opml`
-2. 添加到 GitHub Secrets：`FOLLOW_OPML_B64`
-3. Actions 会自动加载私人订阅
+项目已包含 Karpathy 推荐的优质博客列表 (`feeds/follow.opml`)，包含：
+- Simon Willison、Mitchell Hashimoto 等技术大牛的博客
+- Hacker News 热门博客
+- AI/技术领域优质内容源
+
+### 自定义 RSS 订阅
+
+**方式 1: 覆盖默认订阅（推荐）**
+1. 准备你的 OPML 文件
+2. 生成 base64：`base64 < your-feeds.opml`
+3. 添加到 GitHub Secrets：`FOLLOW_OPML_B64`
+4. Actions 会自动使用你的订阅覆盖默认文件
+
+**方式 2: 本地测试**
+```bash
+# 复制模板
+cp feeds/follow.example.opml feeds/follow.opml
+
+# 编辑添加你的 RSS 订阅
+# vim feeds/follow.opml
+
+# 运行脚本
+python scripts/update_news.py --output-dir data --window-hours 24 --rss-opml feeds/follow.opml
+```
 
 ## 项目结构
 
