@@ -366,13 +366,13 @@
   <body>
     <header class="header">
       <div class="header-left">
-        <h1 class="header-title">TheAIEra</h1>
+        <h1 class="header-title">TheAIEra - 最新 24 小时 AI 新闻与动态</h1>
         <span class="header-tag">Live</span>
       </div>
       <div class="header-stats">
         <span><b id="totalItems">-</b> 更新</span>
         <span><b id="sourceCount">-</b> 源</span>
-        <span id="updatedAt">-</span>
+        <span>更新: <b id="updateTime">-</b></span>
       </div>
     </header>
 
@@ -430,7 +430,7 @@
       const sectionTitle = document.getElementById('sectionTitle');
       const totalItems = document.getElementById('totalItems');
       const sourceCount = document.getElementById('sourceCount');
-      const updatedAt = document.getElementById('updatedAt');
+      const updateTime = document.getElementById('updateTime');
 
       // Get unique sites and sources as categories
       let siteCategories = [];
@@ -439,7 +439,13 @@
       function updateStats() {
         totalItems.textContent = newsData.total_items.toLocaleString();
         sourceCount.textContent = newsData.site_count;
-        updatedAt.textContent = new Date(newsData.generated_at).toLocaleTimeString('zh-CN', {
+
+        // Display update time in Shanghai timezone
+        const generatedDate = new Date(newsData.generated_at);
+        const shanghaiTime = new Date(generatedDate.toLocaleString('en-US', { timeZone: 'Asia/Shanghai' }));
+        updateTime.textContent = shanghaiTime.toLocaleString('zh-CN', {
+          month: '2-digit',
+          day: '2-digit',
           hour: '2-digit',
           minute: '2-digit'
         });
@@ -468,7 +474,9 @@
         sourceCategories = Array.from(sourceMap.entries())
           .map(([name, count]) => ({ name, count }))
           .sort((a, b) => b.count - a.count)
-          .slice(0, 20); // Limit to top 20 sources
+          .slice(0, 30); // Increase to top 30 sources
+
+        console.log('Sources found:', sourceCategories.length, sourceCategories.slice(0, 5).map(s => s.name));
 
         // Clear existing tabs
         categoryTabs.innerHTML = '<button class="category-tab active" data-category="all">全部</button>';
