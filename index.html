@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TheAIEra - 24h AI Updates Radar</title>
+    <title>最新 24 小时 AI 热点新闻与动态 - TheAIEra</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -389,15 +389,8 @@
       <button class="category-tab active" data-category="all">全部</button>
     </div>
 
-    <div class="category-tabs" id="aiCompanyTabs">
-      <button class="category-tab" data-tag="github">GitHub</button>
-      <button class="category-tab" data-tag="hn">HackerNews</button>
-      <button class="category-tab" data-tag="showhn">ShowHN</button>
-      <button class="category-tab" data-tag="openai">OpenAI</button>
-      <button class="category-tab" data-tag="anthropic">Anthropic</button>
-      <button class="category-tab" data-tag="google">Google</button>
-      <button class="category-tab" data-tag="microsoft">Microsoft</button>
-      <button class="category-tab" data-tag="meta">Meta</button>
+    <div class="category-tabs" id="sourceTabs">
+      <button class="category-tab active" data-source="all">全部来源</button>
     </div>
 
     <main class="main-content">
@@ -418,32 +411,20 @@
         <a href="https://github.com/itech001/the-ai-era" target="_blank" rel="noopener">GitHub</a>
       </div>
       <div class="footer-meta">
-        数据每30分钟自动更新 | 最后部署: <span id="deployTime">-</span>
+        数据每30分钟自动更新 | 上海时间: <span id="deployTime">-</span>
       </div>
     </footer>
 
     <script>
       let newsData = null;
       let currentCategory = 'all';
-      let currentTag = '';
+      let currentSource = 'all';
       let searchQuery = '';
       let selectedSite = '';
 
-      // Tag keywords for AI companies and platforms
-      const tagKeywords = {
-        github: ['github', 'repo', 'commit', 'pr', 'release', 'star', 'fork'],
-        hn: ['hacker news', 'y combinator', 'yc', 'startup'],
-        showhn: ['show hn', 'show hacker news'],
-        openai: ['openai', 'gpt', 'chatgpt', 'dall-e', 'sora'],
-        anthropic: ['anthropic', 'claude'],
-        google: ['google', 'gemini', 'bard', 'deepmind', 'alphabet'],
-        microsoft: ['microsoft', 'msft', 'azure', 'copilot', 'bing'],
-        meta: ['meta', 'facebook', 'llama', 'instagram', 'whatsapp', 'zuck']
-      };
-
       const searchInput = document.getElementById('searchInput');
       const categoryTabs = document.getElementById('categoryTabs');
-      const aiCompanyTabs = document.getElementById('aiCompanyTabs');
+      const sourceTabs = document.getElementById('sourceTabs');
       const newsList = document.getElementById('newsList');
       const resultCount = document.getElementById('resultCount');
       const sectionTitle = document.getElementById('sectionTitle');
@@ -451,8 +432,9 @@
       const sourceCount = document.getElementById('sourceCount');
       const updatedAt = document.getElementById('updatedAt');
 
-      // Get unique sites as categories
+      // Get unique sites and sources as categories
       let siteCategories = [];
+      let sourceCategories = [];
 
       function updateStats() {
         totalItems.textContent = newsData.total_items.toLocaleString();
@@ -475,6 +457,19 @@
           count: s.count
         }));
 
+        // Get unique sources with data
+        const sourceMap = new Map();
+        (newsData.items || []).forEach(item => {
+          if (item.source) {
+            const count = sourceMap.get(item.source) || 0;
+            sourceMap.set(item.source, count + 1);
+          }
+        });
+        sourceCategories = Array.from(sourceMap.entries())
+          .map(([name, count]) => ({ name, count }))
+          .sort((a, b) => b.count - a.count)
+          .slice(0, 20); // Limit to top 20 sources
+
         // Clear existing tabs
         categoryTabs.innerHTML = '<button class="category-tab active" data-category="all">全部</button>';
 
@@ -487,21 +482,32 @@
           categoryTabs.appendChild(btn);
         });
 
+        // Build source tabs
+        sourceTabs.innerHTML = '<button class="category-tab active" data-source="all">全部来源</button>';
+        sourceCategories.forEach(source => {
+          const btn = document.createElement('button');
+          btn.className = 'category-tab';
+          btn.dataset.source = source.name;
+          btn.textContent = `${source.name} (${source.count})`;
+          sourceTabs.appendChild(btn);
+        });
+
         // Add event listeners for category tabs
         categoryTabs.querySelectorAll('.category-tab').forEach(tab => {
           tab.addEventListener('click', handleCategoryClick);
         });
 
-        // Add event listeners for AI company tags
-        aiCompanyTabs.querySelectorAll('.category-tab').forEach(tab => {
-          tab.addEventListener('click', handleTagClick);
+        // Add event listeners for source tabs
+        sourceTabs.querySelectorAll('.category-tab').forEach(tab => {
+          tab.addEventListener('click', handleSourceClick);
         });
       }
 
       function handleCategoryClick(e) {
-        // Reset company tags
-        currentTag = '';
-        aiCompanyTabs.querySelectorAll('.category-tab').forEach(t => t.classList.remove('active'));
+        // Reset source filter
+        currentSource = 'all';
+        sourceTabs.querySelectorAll('.category-tab').forEach(t => t.classList.remove('active'));
+        sourceTabs.querySelector('[data-source="all"]').classList.add('active');
 
         // Update category tabs
         categoryTabs.querySelectorAll('.category-tab').forEach(t => t.classList.remove('active'));
@@ -515,37 +521,20 @@
         renderNews();
       }
 
-      function handleTagClick(e) {
-        // Reset category
+      function handleSourceClick(e) {
+        // Reset category filter
         currentCategory = 'all';
         categoryTabs.querySelectorAll('.category-tab').forEach(t => t.classList.remove('active'));
         categoryTabs.querySelector('[data-category="all"]').classList.add('active');
 
-        // Update tag tabs
-        aiCompanyTabs.querySelectorAll('.category-tab').forEach(t => t.classList.remove('active'));
+        // Update source tabs
+        sourceTabs.querySelectorAll('.category-tab').forEach(t => t.classList.remove('active'));
         e.target.classList.add('active');
-        currentTag = e.target.dataset.tag;
+        currentSource = e.target.dataset.source;
 
-        sectionTitle.textContent = e.target.textContent;
+        sectionTitle.textContent = currentSource === 'all' ? '全部' : currentSource;
 
         renderNews();
-      }
-
-      function getItemTags(item) {
-        const title = (item.title_zh || item.title || item.title_en || '').toLowerCase();
-        const url = (item.url || '').toLowerCase();
-        const text = title + ' ' + url;
-
-        const tags = [];
-        for (const [tag, keywords] of Object.entries(tagKeywords)) {
-          for (const keyword of keywords) {
-            if (text.includes(keyword.toLowerCase())) {
-              tags.push(tag);
-              break;
-            }
-          }
-        }
-        return tags;
       }
 
       function formatTime(item) {
@@ -643,11 +632,8 @@
           // Category filter (by site)
           if (currentCategory !== 'all' && item.site_id !== currentCategory) return false;
 
-          // Tag filter (by AI company/platform)
-          if (currentTag) {
-            const itemTags = getItemTags(item);
-            if (!itemTags.includes(currentTag)) return false;
-          }
+          // Source filter
+          if (currentSource !== 'all' && item.source !== currentSource) return false;
 
           // Search filter
           if (searchQuery) {
@@ -667,13 +653,10 @@
         const card = document.createElement('article');
         card.className = 'news-card';
 
-        const itemTags = getItemTags(item);
-
         const metaHtml = `
           <div class="card-meta">
             <span class="site-badge">${item.site_name}</span>
             ${item.source ? `<span class="source-badge">${item.source}</span>` : ''}
-            ${itemTags.length > 0 ? `<span class="tag-badge">${itemTags[0]}</span>` : ''}
             <time class="time-badge">${formatTime(item)}</time>
           </div>
         `;
@@ -742,7 +725,7 @@
                 second: '2-digit',
                 hour12: false
               });
-              document.getElementById('deployTime').textContent = formattedTime + ' (上海时间)';
+              document.getElementById('deployTime').textContent = formattedTime;
             }
           }
         } catch (error) {
