@@ -1,0 +1,46 @@
+name: Deploy to Vercel
+
+on:
+  # 每天北京时间早上 7:00 (UTC 时间 23:00)
+  schedule:
+    - cron: '0 23 * * *'
+
+  # 手动触发
+  workflow_dispatch:
+
+  # 推送到 master 分支时触发(可选)
+  push:
+    branches: [master]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout 代码
+        uses: actions/checkout@v4
+
+      - name: 安装 Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: 安装 Vercel CLI
+        run: npm install --global vercel@latest
+
+      - name: 拉取 Vercel Environment Information
+        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+
+      - name: 构建项目
+        run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
+
+      - name: 部署到 Vercel
+        id: deploy
+        run: |
+          url=$(vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }})
+          echo "url=$url" >> $GITHUB_OUTPUT
+
+      - name: 输出部署 URL
+        run: |
+          echo "部署成功! 🚀"
+          echo "Vercel URL: ${{ steps.deploy.outputs.url }}"
