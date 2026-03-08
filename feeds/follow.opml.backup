@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <opml version="2.0">
   <head>
-    <title>Combined RSS Feeds - Karpathy & AI Companies</title>
-    <description>Karpathy 推荐博客 + AI 公司官方 RSS (66 个源)</description>
+    <title>Blog Feeds</title>
   </head>
   <body>
-
     <outline text="Blogs" title="Blogs">
       <outline type="rss" text="simonwillison.net" title="simonwillison.net" xmlUrl="https://simonwillison.net/atom/everything/" htmlUrl="https://simonwillison.net"/>
       <outline type="rss" text="jeffgeerling.com" title="jeffgeerling.com" xmlUrl="https://www.jeffgeerling.com/blog.xml" htmlUrl="https://jeffgeerling.com"/>
@@ -100,85 +98,5 @@
       <outline type="rss" text="computer.rip" title="computer.rip" xmlUrl="https://computer.rip/rss.xml" htmlUrl="https://computer.rip"/>
       <outline type="rss" text="tedunangst.com" title="tedunangst.com" xmlUrl="https://www.tedunangst.com/flak/rss" htmlUrl="https://tedunangst.com"/>
     </outline>
-  
-    <outline text="国际科技巨头 AI 板块" title="国际科技巨头 AI 板块">
-      <outline type="rss" text="OpenAI" title="OpenAI" xmlUrl="https://openai.com/blog/rss/" />
-      <outline type="rss" text="Google" title="Google" xmlUrl="https://ai.googleblog.com/feeds/posts/default" />
-      <outline type="rss" text="Microsoft" title="Microsoft" xmlUrl="https://blogs.microsoft.com/ai/feed/" />
-      <outline type="rss" text="Amazon" title="Amazon" xmlUrl="https://aws.amazon.com/blogs/machine-learning/feed/" />
-      <outline type="rss" text="NVIDIA" title="NVIDIA" xmlUrl="https://blogs.nvidia.com/feed/" />
-      <outline type="rss" text="Apple" title="Apple" xmlUrl="https://machinelearning.apple.com/rss.xml" />
-      <outline type="rss" text="Uber" title="Uber" xmlUrl="https://eng.uber.com/category/machine-learning/feed/" />
-      <outline type="rss" text="Meta" title="Meta" xmlUrl="https://ai.meta.com/blog/rss.xml" />
-    </outline>
-    <outline text="国内头部科技企业 AI 板块" title="国内头部科技企业 AI 板块">
-      <outline type="rss" text="阿里巴巴" title="阿里巴巴" xmlUrl="https://www.alibabacloud.com/blog/feed" />
-      <outline type="rss" text="腾讯" title="腾讯" xmlUrl="https://cloud.tencent.cn/developer/column/98796/feed" />
-      <outline type="rss" text="百度" title="百度" xmlUrl="https://ai.baidu.com/blog/feed" />
-      <outline type="rss" text="华为" title="华为" xmlUrl="https://www.huaweicloud.com/blog/feed?category=ai" />
-      <outline type="rss" text="字节跳动" title="字节跳动" xmlUrl="https://seed.bytedance.com/feed" />
-      <outline type="rss" text="小米" title="小米" xmlUrl="https://www.mi.com/global/blog/feed" />
-    </outline>
-    <outline text="AI 独角兽及专业 AI 企业" title="AI 独角兽及专业 AI 企业">
-      <outline type="rss" text="Anthropic" title="Anthropic" xmlUrl="https://www.anthropic.com/blog/rss" />
-      <outline type="rss" text="Stability AI" title="Stability AI" xmlUrl="https://stability.ai/blog/rss" />
-      <outline type="rss" text="Perplexity AI" title="Perplexity AI" xmlUrl="https://www.perplexity.ai/blog/feed" />
-      <outline type="rss" text="AssemblyAI" title="AssemblyAI" xmlUrl="https://www.assemblyai.com/blog/rss/" />
-      <outline type="rss" text="Databricks" title="Databricks" xmlUrl="https://www.databricks.com/blog/category/artificial-intelligence/feed" />
-      <outline type="rss" text="Domino Data Lab" title="Domino Data Lab" xmlUrl="https://blog.dominodatalab.com/category/machine-learning/feed" />
-    </outline>
-    <outline text="顶尖高校及科研平台 AI 板块" title="顶尖高校及科研平台 AI 板块">
-      <outline type="rss" text="" title="" xmlUrl="https://news.mit.edu/rss/topic/artificial-intelligence" />
-      <outline type="rss" text="" title="" xmlUrl="https://bair.berkeley.edu/blog/feed.xml" />
-      <outline type="rss" text="" title="" xmlUrl="https://blog.ml.cmu.edu/feed" />
-      <outline type="rss" text="" title="" xmlUrl="https://ai.stanford.edu/blog/feed/" />
-      <outline type="rss" text="" title="" xmlUrl="https://rss.arxiv.org/rss/cs.AI" />
-      <outline type="rss" text="" title="" xmlUrl="https://arxiv.org/rss/cs.LG" />
-    </outline>
-    <outline text="重点 AI 技术媒体及社区平台" title="重点 AI 技术媒体及社区平台">
-      <outline type="rss" text="" title="" xmlUrl="https://machinelearningmastery.com/blog/feed" />
-      <outline type="rss" text="" title="" xmlUrl="https://towardsdatascience.com/feed" />
-      <outline type="rss" text="" title="" xmlUrl="https://www.aitrends.com/feed/" />
-      <outline type="rss" text="" title="" xmlUrl="https://unite.ai/feed" />
-      <outline type="rss" text="" title="" xmlUrl="https://analyticsindiamag.com/feed/" />
-      <outline type="rss" text="" title="" xmlUrl="https://ml.berkeley.edu/blog/rss.xml" />
-      <outline type="rss" text="" title="" xmlUrl="https://www.inference.vc/feed" />
-      <outline type="rss" text="" title="" xmlUrl="https://distill.pub/rss.xml" />
-      <outline type="rss" text="" title="" xmlUrl="https://www.sciencedaily.com/rss/computers_math/artificial_intelligence.xml" />
-      <outline type="rss" text="" title="" xmlUrl="https://www.artificialintelligence-news.com/feed/rss/" />
-    </outline>
-    <outline text="补充 AI 技术相关 RSS" title="补充 AI 技术相关 RSS">
-      <outline type="rss" text="" title="" xmlUrl="https://blogs.cisco.com/feed?tag=machine-learning" />
-      <outline type="rss" text="" title="" xmlUrl="https://blogs.unity3d.com/category/ai/feed" />
-      <outline type="rss" text="" title="" xmlUrl="https://community.arm.com/developer/tools-software/tools/b/tools-software-ides-blog/feed" />
-      <outline type="rss" text="" title="" xmlUrl="https://pytorch.org/blog/feed.xml" />
-      <outline type="rss" text="" title="" xmlUrl="https://hackernoon.com/tagged/artificial-intelligence/feed" />
-      <outline type="rss" text="" title="" xmlUrl="https://nanonets.com/blog/feed/" />
-      <outline type="rss" text="" title="" xmlUrl="https://www.fast.ai/index.xml" />
-      <outline type="rss" text="" title="" xmlUrl="https://pyimagesearch.com/feed/" />
-      <outline type="rss" text="" title="" xmlUrl="https://algorithmia.com/blog/feed" />
-      <outline type="rss" text="" title="" xmlUrl="https://mlinproduction.com/feed/" />
-      <outline type="rss" text="" title="" xmlUrl="https://www.reddit.com/r/machinelearning/.rss" />
-      <outline type="rss" text="" title="" xmlUrl="https://www.microsoft.com/en-us/research/blog/feed/" />
-      <outline type="rss" text="" title="" xmlUrl="https://research.google/blog/rss/" />
-      <outline type="rss" text="" title="" xmlUrl="https://deepmind.com/blog/feed/blog.xml" />
-      <outline type="rss" text="" title="" xmlUrl="https://x-lab.tencent.com/feed" />
-      <outline type="rss" text="" title="" xmlUrl="https://blog.paddlepaddle.org.cn/feed" />
-      <outline type="rss" text="" title="" xmlUrl="https://www.zhipuai.cn/blog/feed" />
-      <outline type="rss" text="" title="" xmlUrl="https://www.sensetime.com/research/feed" />
-      <outline type="rss" text="" title="" xmlUrl="https://www.megvii.com/blog/feed" />
-      <outline type="rss" text="" title="" xmlUrl="https://www.4paradigm.com/blog/feed" />
-      <outline type="rss" text="" title="" xmlUrl="https://www.iflytek.com/index.php?m=content&c=index&a=rss&catid=28" />
-      <outline type="rss" text="" title="" xmlUrl="https://www.unisound.com/blog/feed" />
-      <outline type="rss" text="" title="" xmlUrl="https://developer.horizon.ai/blog/feed" />
-      <outline type="rss" text="" title="" xmlUrl="https://www.horizon.ai/blog/feed" />
-      <outline type="rss" text="" title="" xmlUrl="https://www.enflame-tech.com/blog/feed" />
-      <outline type="rss" text="" title="" xmlUrl="https://www.biren-tech.com/feed?category=ai" />
-      <outline type="rss" text="" title="" xmlUrl="https://www.muxi-tech.com/blog/feed" />
-      <outline type="rss" text="" title="" xmlUrl="https://www.mthreads.com/feed?tag=ai" />
-      <outline type="rss" text="" title="" xmlUrl="https://www.volcengine.com/docs/70404/feed" />
-      <outline type="rss" text="" title="" xmlUrl="https://tongyi.aliyun.com/blog/feed" />
-    </outline>
-  
   </body>
 </opml>

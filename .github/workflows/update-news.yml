@@ -26,7 +26,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Prepare OPML (optional)
+      - name: Prepare RSS feeds
         env:
           FOLLOW_OPML_B64: ${{ secrets.FOLLOW_OPML_B64 }}
         run: |
@@ -35,7 +35,7 @@ jobs:
             echo "$FOLLOW_OPML_B64" | base64 --decode > feeds/follow.opml
             echo "Loaded feeds/follow.opml from FOLLOW_OPML_B64 secret (overrides default)"
           elif [ -f feeds/follow.opml ]; then
-            echo "Using default feeds/follow.opml from repository"
+            echo "Using default feeds/follow.opml from repository (Karpathy blogs)"
           else
             echo "No RSS OPML found; RSS feeds are optional"
           fi

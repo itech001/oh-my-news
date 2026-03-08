@@ -89,12 +89,23 @@ python -m http.server 8080
 
 ### 默认 RSS 订阅
 
-项目已包含 Karpathy 推荐的优质博客列表 (`feeds/follow.opml`)，包含：
+项目已包含以下优质 RSS 订阅列表 (`feeds/follow.opml`)：
+
+**1. Karpathy 推荐博客** (100+ 源)
 - Simon Willison、Mitchell Hashimoto 等技术大牛的博客
 - Hacker News 热门博客
 - AI/技术领域优质内容源
 
-**来源**: [HN Popular Blogs 2025](https://gist.github.com/emschwartz/e6d2bf860ccc367fe37ff953ba6de66b#file-hn-popular-blogs-2025-opml)
+**2. AI 公司官方 RSS** (66 源)
+- 国际科技巨头: OpenAI, Google, Microsoft, NVIDIA, Meta, Apple, Amazon 等
+- 国内头部企业: 阿里巴巴、腾讯、百度、华为、字节跳动、小米等
+- AI 独角兽: Anthropic, Perplexity AI, Stability AI 等
+- 顶尖高校: MIT, UC Berkeley, Stanford, CMU, arXiv 等
+- 技术媒体: Machine Learning Mastery, Towards Data Science 等
+
+**来源**:
+- [HN Popular Blogs 2025](https://gist.github.com/emschwartz/e6d2bf860ccc367fe37ff953ba6de66b#file-hn-popular-blogs-2025-opml)
+- AI Company RSS (66 个全球 AI 大公司及顶尖 AI 技术平台)
 
 ### 自定义 RSS 订阅
 
