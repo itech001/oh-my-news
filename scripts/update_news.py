@@ -2054,7 +2054,7 @@ def main() -> int:
     parser.add_argument("--window-hours", type=int, default=24, help="24h window size")
     parser.add_argument("--archive-days", type=int, default=45, help="Keep archive for N days")
     parser.add_argument("--translate-max-new", type=int, default=80, help="Max new EN->ZH title translations per run")
-    parser.add_argument("--rss-opml", default="", action="append", help="Optional OPML file paths to include RSS sources (can be specified multiple times)")
+    parser.add_argument("--rss-opml", nargs='*', default=[], help="Optional OPML file paths to include RSS sources (can be specified multiple times)")
     parser.add_argument("--rss-max-feeds", type=int, default=0, help="Optional max OPML RSS feeds to fetch (0 means all)")
     args = parser.parse_args()
 
